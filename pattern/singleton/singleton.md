@@ -177,5 +177,5 @@ public class ContainerSingleton {
  
  ## 内部类的执行逻辑
  
- (/Applications/temp/inner.jpg)
+ ![image_text](https://github.com/LFAST11/freamework-study/blob/master/pattern/singleton/inner.jpg)
  
