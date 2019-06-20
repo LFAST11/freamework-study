@@ -185,7 +185,7 @@ cglib的实现原理更加复杂，生成代理类的效率比jdk更低
 ## 代理模式在spring中的体现
 
 spring中的AopProxy的两个实现类CglibAopProxy 和JdkDynamicAopProxy 来完成spring中的代理功能
-
+![image_text](https://github.com/LFAST11/freamework-study/blob/master/pattern/proxy/企业微信截图_d14ee5ce-2a29-4871-b801-2cdea2537a57.png)
 选择：
 如果目标类实现了接口，优先使用jdk代理
 如果目标类没有实现接口，使用cglib代理
