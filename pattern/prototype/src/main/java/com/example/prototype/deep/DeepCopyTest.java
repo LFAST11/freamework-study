@@ -25,7 +25,6 @@ public class DeepCopyTest {
         System.out.println(clone);
 
 
-
         System.out.println("-------------");
 
 
@@ -33,12 +32,10 @@ public class DeepCopyTest {
         System.out.println(clone.getBangzi());
 
 
-
-        Monkey deepClone =  monkey.deepClone();
+        Monkey deepClone = monkey.deepClone();
 
         System.out.println(monkey);
         System.out.println(deepClone);
-
 
 
         System.out.println("-------------");

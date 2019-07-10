@@ -7,10 +7,10 @@ import com.example.struct.bean.Dog;
  * lingfan
  * 2019-05-28 17:14
  */
-public class IDogFatory implements IAnimalFatory{
+public class IDogFatory implements IAnimalFatory {
     @Override
     public Animal create() {
         //do something
-        return  new Dog();
+        return new Dog();
     }
 }

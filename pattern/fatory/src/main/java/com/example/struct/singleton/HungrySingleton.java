@@ -6,11 +6,12 @@ package com.example.struct.singleton;
  */
 public class HungrySingleton {
 
-    private volatile  static  HungrySingleton singleton = new HungrySingleton();
+    private volatile static HungrySingleton singleton = new HungrySingleton();
 
-    private HungrySingleton(){ }
+    private HungrySingleton() {
+    }
 
-    public static HungrySingleton getInstance(){
+    public static HungrySingleton getInstance() {
         return singleton;
     }
 

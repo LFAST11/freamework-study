@@ -21,7 +21,7 @@ public class DiyProxy {
     public static Object newProxyInstance(DiyClassLoader loader,
                                           Class<?>[] interfaces,
                                           DiyInvationHandle h)
-            throws Exception{
+            throws Exception {
 
         //动态生成源码
         String code = generateCode(interfaces);
@@ -29,7 +29,7 @@ public class DiyProxy {
         //写入到文件
         String path = DiyProxy.class.getResource("").getPath();
 
-        File file = new File(path,"$Proxy0.java");
+        File file = new File(path, "$Proxy0.java");
         FileWriter fw = new FileWriter(file);
         fw.write(code);
         fw.flush();
@@ -37,7 +37,7 @@ public class DiyProxy {
 
         //将java文件编译成class文件
         JavaCompiler compiler = ToolProvider.getSystemJavaCompiler();
-        StandardJavaFileManager manager = compiler.getStandardFileManager(null,null,null);
+        StandardJavaFileManager manager = compiler.getStandardFileManager(null, null, null);
         Iterable<? extends JavaFileObject> fileObjects = manager.getJavaFileObjects(file);
 
         JavaCompiler.CompilationTask task = compiler.getTask(null, manager, null, null, null, fileObjects);
@@ -54,63 +54,62 @@ public class DiyProxy {
     private static String generateCode(Class<?>[] interfaces) {
         StringBuffer sb = new StringBuffer();
 
-        sb.append("package com.example.proxy.dynamicproxy.diyproxy;"+ln);
-        sb.append("import com.example.proxy.dynamicproxy.jdkproxy.Person;"+ln);
-        sb.append("import java.lang.reflect.*;"+ln);
+        sb.append("package com.example.proxy.dynamicproxy.diyproxy;" + ln);
+        sb.append("import com.example.proxy.dynamicproxy.jdkproxy.Person;" + ln);
+        sb.append("import java.lang.reflect.*;" + ln);
 
-        sb.append("public final class $Proxy0 implements "+interfaces[0].getName()+"{"+ln);
+        sb.append("public final class $Proxy0 implements " + interfaces[0].getName() + "{" + ln);
 
-        sb.append("DiyInvationHandle h;"+ln);
+        sb.append("DiyInvationHandle h;" + ln);
 
         sb.append("public $Proxy0(DiyInvationHandle h){");
-        sb.append("this.h = h ;"+ln);
-        sb.append("}"+ln);
+        sb.append("this.h = h ;" + ln);
+        sb.append("}" + ln);
 
-        for(Method method : interfaces[ 0].getMethods()){
+        for (Method method : interfaces[0].getMethods()) {
             Class<?>[] parameterTypes = method.getParameterTypes();
 
             StringBuffer names = new StringBuffer();
             StringBuffer values = new StringBuffer();
             StringBuffer classes = new StringBuffer();
 
-            for(int i = 0;i<parameterTypes.length;i++){
+            for (int i = 0; i < parameterTypes.length; i++) {
                 Class<?> parameter = parameterTypes[i];
                 String type = parameter.getName();
-                String paramName = toLowerFirstCase(parameter.getSimpleName())+i;
+                String paramName = toLowerFirstCase(parameter.getSimpleName()) + i;
 
 
-                names.append(type +" "+paramName+",");
-                values.append(paramName+",");
-                classes.append(parameter.getName()+ ".class "+",");
+                names.append(type + " " + paramName + ",");
+                values.append(paramName + ",");
+                classes.append(parameter.getName() + ".class " + ",");
 
-                if(i == parameterTypes.length-1){
-                    names.deleteCharAt(names.length()-1);
-                    values.deleteCharAt(values.length()-1);
-                    classes.deleteCharAt(classes.length()-1);
+                if (i == parameterTypes.length - 1) {
+                    names.deleteCharAt(names.length() - 1);
+                    values.deleteCharAt(values.length() - 1);
+                    classes.deleteCharAt(classes.length() - 1);
                 }
             }
 
 
-
-            sb.append("public "+method.getReturnType().getName()+" "+method.getName()+" ("+names.toString()+" ){"+ln);
-            sb.append("try{"+ln);
-            sb.append("Method m = "+interfaces[0].getName()+".class.getMethod(\""+method.getName()+"\",new Class[]{"+classes.toString()+"});"+ln);
-            sb.append((hasReturnValue(method.getReturnType())?"return ":"") + getCaseCode("this.h.invoke(this,m,new Object[]{" + values+"})",method.getReturnType())+";"+ln);
-           sb.append("}catch(Exception e){"+ln);
-            sb.append("}catch(Throwable e){"+ln);
-            sb.append("throw new UndeclaredThrowableException(e);"+ln);
+            sb.append("public " + method.getReturnType().getName() + " " + method.getName() + " (" + names.toString() + " ){" + ln);
+            sb.append("try{" + ln);
+            sb.append("Method m = " + interfaces[0].getName() + ".class.getMethod(\"" + method.getName() + "\",new Class[]{" + classes.toString() + "});" + ln);
+            sb.append((hasReturnValue(method.getReturnType()) ? "return " : "") + getCaseCode("this.h.invoke(this,m,new Object[]{" + values + "})", method.getReturnType()) + ";" + ln);
+            sb.append("}catch(Exception e){" + ln);
+            sb.append("}catch(Throwable e){" + ln);
+            sb.append("throw new UndeclaredThrowableException(e);" + ln);
             sb.append("}");
             sb.append(getReturnEmpty(method.getReturnType()));
-            sb.append("}"+ln);
+            sb.append("}" + ln);
         }
-        sb.append("}"+ln);
+        sb.append("}" + ln);
 
         return sb.toString();
     }
 
     private static String getCaseCode(String code, Class<?> returnType) {
-        if (mappings.containsKey(returnType)){
-            return "(("+mappings.get(returnType.getName() +")"+code + ")."+returnType.getSimpleName() + "Values()");
+        if (mappings.containsKey(returnType)) {
+            return "((" + mappings.get(returnType.getName() + ")" + code + ")." + returnType.getSimpleName() + "Values()");
         }
         return code;
     }
@@ -120,16 +119,16 @@ public class DiyProxy {
     }
 
     private static String getReturnEmpty(Class<?> returnType) {
-        if(mappings.containsKey(returnType)){
+        if (mappings.containsKey(returnType)) {
             return "return 0;";
-        }else if(returnType == void.class){
+        } else if (returnType == void.class) {
             return "";
-        }else{
+        } else {
             return "return null;";
         }
     }
 
-    private static Map<Class,Class> mappings  = new HashMap();
+    private static Map<Class, Class> mappings = new HashMap();
 
     private static String toLowerFirstCase(String simpleName) {
         char[] chars = simpleName.toCharArray();

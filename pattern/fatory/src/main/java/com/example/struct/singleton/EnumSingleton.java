@@ -5,12 +5,13 @@ package com.example.struct.singleton;
  * 2019-05-31 15:32
  * 推荐使用,
  */
-public enum  EnumSingleton {
+public enum EnumSingleton {
     INSTANCE;
 
     private Object data;
 
-    EnumSingleton(){ }
+    EnumSingleton() {
+    }
 
     public Object getData() {
         return data;
@@ -21,7 +22,7 @@ public enum  EnumSingleton {
     }
 
 
-    public static EnumSingleton getInstance(){
+    public static EnumSingleton getInstance() {
         return INSTANCE;
     }
 

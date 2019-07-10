@@ -14,7 +14,7 @@ public class DIyZHenAI implements DiyInvationHandle {
     public Object getInstance(Object target) throws Exception {
         this.target = target;
         Class<?> targetClass = target.getClass();
-        return DiyProxy.newProxyInstance(new DiyClassLoader(),targetClass.getInterfaces(),this);
+        return DiyProxy.newProxyInstance(new DiyClassLoader(), targetClass.getInterfaces(), this);
     }
 
     @Override
@@ -26,11 +26,11 @@ public class DIyZHenAI implements DiyInvationHandle {
     }
 
 
-    public void before(){
+    public void before() {
         System.out.println("先自我介绍一下吧");
     }
 
-    public void after(){
+    public void after() {
         System.out.println("交换微信吧");
     }
 }

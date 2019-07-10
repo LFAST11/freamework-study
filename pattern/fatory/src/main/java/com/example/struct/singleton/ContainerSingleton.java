@@ -10,11 +10,11 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public class ContainerSingleton {
 
-    private final Map<String,Object> ioc = new ConcurrentHashMap();
+    private final Map<String, Object> ioc = new ConcurrentHashMap();
 
 
-    private  synchronized Object getBean(String className){
-        if(!ioc.containsKey(className)){
+    private synchronized Object getBean(String className) {
+        if (!ioc.containsKey(className)) {
             Object obj = null;
             try {
                 obj = Class.forName(className).newInstance();
@@ -25,7 +25,6 @@ public class ContainerSingleton {
         }
         return ioc.get(className);
     }
-
 
 
 }

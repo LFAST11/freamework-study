@@ -12,10 +12,10 @@ public class ZhenAiProxy implements InvocationHandler {
 
     private Object target;
 
-    public Object getInstance(Object target){
+    public Object getInstance(Object target) {
         this.target = target;
         Class<?> targetClass = target.getClass();
-        return Proxy.newProxyInstance(targetClass.getClassLoader(),targetClass.getInterfaces(),this);
+        return Proxy.newProxyInstance(targetClass.getClassLoader(), targetClass.getInterfaces(), this);
     }
 
     @Override
@@ -27,11 +27,11 @@ public class ZhenAiProxy implements InvocationHandler {
     }
 
 
-    public void before(){
+    public void before() {
         System.out.println("先自我介绍一下吧");
     }
 
-    public void after(){
+    public void after() {
         System.out.println("交换微信吧");
     }
 }

@@ -4,5 +4,5 @@ package com.example.struct.bean;
  * lingfan
  * 2019-05-28 17:26
  */
-public class GuangDongPig extends  Pig{
+public class GuangDongPig extends Pig {
 }

@@ -10,11 +10,11 @@ import java.lang.reflect.Method;
  * lingfan
  * 2019-06-14 17:38
  */
-public  class DiyClassLoader  extends  ClassLoader{
+public class DiyClassLoader extends ClassLoader {
 
     private File classPathFile;
 
-    public  DiyClassLoader(){
+    public DiyClassLoader() {
         String classPath = DiyClassLoader.class.getResource("").getPath();
         this.classPathFile = new File(classPath);
     }
@@ -25,25 +25,25 @@ public  class DiyClassLoader  extends  ClassLoader{
 
         String className = DiyClassLoader.class.getPackage().getName() + "." + name;
 
-        if (classPathFile != null){
-            File file = new File(classPathFile,name.replace("\\,","/") + ".class");
+        if (classPathFile != null) {
+            File file = new File(classPathFile, name.replace("\\,", "/") + ".class");
 
-            if(file.exists()){
+            if (file.exists()) {
                 FileInputStream fis = null;
                 ByteArrayOutputStream bios = null;
-                try{
-                    fis  = new FileInputStream(file);
+                try {
+                    fis = new FileInputStream(file);
                     bios = new ByteArrayOutputStream();
 
                     byte[] bytes = new byte[1024];
                     int len;
-                    while((len = fis.read(bytes)) !=-1){
-                        bios.write(bytes,0,len);
+                    while ((len = fis.read(bytes)) != -1) {
+                        bios.write(bytes, 0, len);
                     }
 
-                    return defineClass(className,bios.toByteArray(),0,bios.size());
+                    return defineClass(className, bios.toByteArray(), 0, bios.size());
 
-                }catch (Exception e){
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }

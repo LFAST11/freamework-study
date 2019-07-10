@@ -7,7 +7,7 @@ import lombok.Data;
  * 2019-06-06 11:12
  */
 @Data
-public class ProtoTypeA  implements  Prototype{
+public class ProtoTypeA implements Prototype {
 
     private String name;
 

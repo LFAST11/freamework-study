@@ -14,7 +14,7 @@ import java.io.*;
  */
 @Setter
 @Getter
-public class Monkey  implements Cloneable, Serializable {
+public class Monkey implements Cloneable, Serializable {
 
     private Bangzi bangzi;
 
@@ -27,19 +27,19 @@ public class Monkey  implements Cloneable, Serializable {
     }
 
 
-    public Monkey deepClone(){
+    public Monkey deepClone() {
         //将二进制对象输入到磁盘中，再将文件加载到内存成为一个新对象
-        try{
+        try {
             OutputStream os = new ByteArrayOutputStream();
             ObjectOutputStream oos = new ObjectOutputStream(os);
 
             oos.writeObject(this);
 
-            InputStream  is = new ByteArrayInputStream(((ByteArrayOutputStream) os).toByteArray());
+            InputStream is = new ByteArrayInputStream(((ByteArrayOutputStream) os).toByteArray());
             ObjectInputStream ois = new ObjectInputStream(is);
             Monkey monkey = (Monkey) ois.readObject();
             return monkey;
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 

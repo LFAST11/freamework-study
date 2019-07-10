@@ -8,5 +8,5 @@ public interface Person {
 
     public void findLove();
 
-    Object fallInLove(Object boy,Object girl);
+    Object fallInLove(Object boy, Object girl);
 }

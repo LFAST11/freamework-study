@@ -6,7 +6,7 @@ package com.example.proxy.staticproxy;
  */
 public class Boy {
 
-    public  void findLove(){
+    public void findLove() {
         System.out.println("找对象");
         System.out.println("条件:活的");
     }

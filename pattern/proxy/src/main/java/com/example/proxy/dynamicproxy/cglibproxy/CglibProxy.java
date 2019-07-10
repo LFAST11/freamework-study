@@ -13,7 +13,7 @@ import java.lang.reflect.Method;
  */
 public class CglibProxy implements MethodInterceptor {
 
-    public Object getInstance(Class<?> clazz){
+    public Object getInstance(Class<?> clazz) {
         //代理工具类
         Enhancer eh = new Enhancer();
         eh.setSuperclass(clazz);
@@ -30,11 +30,11 @@ public class CglibProxy implements MethodInterceptor {
         return Obj;
     }
 
-    public void before(){
+    public void before() {
         System.out.println("进来之前要洗手");
     }
 
-    public void after(){
+    public void after() {
         System.out.println("出去之后要擦鞋");
     }
 

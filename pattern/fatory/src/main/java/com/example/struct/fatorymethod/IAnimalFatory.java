@@ -8,5 +8,5 @@ import com.example.struct.bean.Animal;
  */
 public interface IAnimalFatory {
 
-     Animal create();
+    Animal create();
 }

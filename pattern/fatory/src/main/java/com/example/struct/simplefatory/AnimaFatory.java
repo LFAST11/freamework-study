@@ -10,16 +10,16 @@ import com.example.struct.bean.Pig;
  */
 public class AnimaFatory {
 
-    public static Animal getAnimal(String name){
-        switch (name){
+    public static Animal getAnimal(String name) {
+        switch (name) {
             case "dog":
                 //do something
-                return  new Dog();
+                return new Dog();
             case "pig":
                 //do something
                 return new Pig();
-            default :
-                    return null;
+            default:
+                return null;
         }
     }
 }

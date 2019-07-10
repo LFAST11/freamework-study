@@ -6,18 +6,18 @@ package com.example.struct.singleton;
  */
 public class ThreadLocalSingleton {
 
-    private ThreadLocalSingleton(){
+    private ThreadLocalSingleton() {
 
     }
 
-    private static ThreadLocal<ThreadLocalSingleton> threadLocalInstance = new ThreadLocal(){
+    private static ThreadLocal<ThreadLocalSingleton> threadLocalInstance = new ThreadLocal() {
         @Override
-        protected  ThreadLocalSingleton initialValue(){
+        protected ThreadLocalSingleton initialValue() {
             return new ThreadLocalSingleton();
         }
     };
 
-    public static ThreadLocalSingleton getInstance(){
+    public static ThreadLocalSingleton getInstance() {
         return threadLocalInstance.get();
     }
 }

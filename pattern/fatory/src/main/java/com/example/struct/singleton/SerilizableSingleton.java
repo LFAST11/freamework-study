@@ -8,19 +8,19 @@ import java.io.Serializable;
  */
 public class SerilizableSingleton implements Serializable {
 
-    private static  SerilizableSingleton instance = new SerilizableSingleton();
+    private static SerilizableSingleton instance = new SerilizableSingleton();
 
-    private SerilizableSingleton(){
+    private SerilizableSingleton() {
 
     }
 
 
-    public static SerilizableSingleton getInstance(){
+    public static SerilizableSingleton getInstance() {
         return instance;
     }
 
 
-    public Object readResolve(){
+    public Object readResolve() {
         return instance;
     }
 
