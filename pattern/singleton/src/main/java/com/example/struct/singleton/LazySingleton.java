@@ -6,7 +6,7 @@ package com.example.struct.singleton;
  */
 public class LazySingleton {
 
-    private static LazySingleton singleton = new LazySingleton();
+    private static LazySingleton singleton;
 
     private LazySingleton() {
     }
