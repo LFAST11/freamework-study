@@ -12,6 +12,7 @@ public class ZhenAiProxy implements InvocationHandler {
 
     private Object target;
 
+
     public Object getInstance(Object target) {
         this.target = target;
         Class<?> targetClass = target.getClass();
@@ -21,6 +22,7 @@ public class ZhenAiProxy implements InvocationHandler {
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
         before();
+        System.out.println(method.toString());
         Object object = method.invoke(target, args);
         after();
         return object;

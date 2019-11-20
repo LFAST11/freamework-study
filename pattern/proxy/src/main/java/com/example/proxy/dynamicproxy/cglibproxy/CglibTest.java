@@ -11,6 +11,6 @@ public class CglibTest {
     public static void main(String[] args) {
         People object = (People) new CglibProxy().getInstance(People.class);
         object.findLove();
-        AopProxy
+
     }
 }
